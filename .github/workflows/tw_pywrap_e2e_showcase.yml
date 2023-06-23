@@ -44,4 +44,4 @@ jobs:
 
           pip install git+https://github.com/ejseqera/tw-pywrap.git@main
 
-          tw-pywrap --config tw_pywrap_e2e_showcase.yml
+          tw-pywrap tw_pywrap_e2e_showcase.yml
