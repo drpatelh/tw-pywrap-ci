@@ -51,7 +51,7 @@ credentials:
     workspace: 'tw_cli_e2e_test/showcase'
     access-key: $AWS_ACCESS_KEY_ID
     secret-key: $AWS_SECRET_ACCESS_KEY
-    assume-role-arn: 'arn:aws:iam::128997144437:role/TowerDevelopmentRole'
+    assume-role-arn: $AWS_ASSUME_ROLE_ARN
     overwrite: True
   - type: 'azure'
     name: 'azure_credentials'
