@@ -1,5 +1,0 @@
-outdir: 'az://seqeralabs-showcase/nf-core-viralrecon/nanopore/results'
-fastq_dir: 'az://nf-core/test-data/viralrecon/minion_test/fastq_pass'
-fast5_dir: 'az://nf-core/test-data/viralrecon/minion_test/fast5_pass'
-sequencing_summary: 'az://nf-core/test-data/viralrecon/minion_test/sequencing_summary.txt'
-artic_minion_medaka_model: 'az://nf-core/test-data/viralrecon/minion_test/r941_min_high_g360_model.hdf5'

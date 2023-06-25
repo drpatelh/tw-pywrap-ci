@@ -158,9 +158,14 @@ pipelines:
     config: './pipelines/nextflow.config'
     pre-run: './pipelines/pre_run.txt'
     overwrite: True
-  - name: 'nf-core-viralrecon-nanopore'
+  - name: 'nf-core-sarek'
     workspace: 'tw_cli_e2e_test/showcase'
     compute-env: 'seqera_azure_virginia'
+    file-path: './pipelines/nf-core-sarek_pipeline.json'
+    overwrite: True
+  - name: 'nf-core-viralrecon-nanopore'
+    workspace: 'tw_cli_e2e_test/showcase'
+    compute-env: 'seqera_aws_ireland_fusionv2_nvme'
     file-path: './pipelines/nf_core_viralrecon_nanopore_pipeline.json'
     overwrite: True
   - name: 'nf-core-viralrecon-illumina'
@@ -203,6 +208,9 @@ launch:
   - name: 'nf-core-viralrecon-illumina'
     workspace: 'tw_cli_e2e_test/showcase'
     pipeline: 'nf-core-viralrecon-illumina'
+  - name: 'nf-core-sarek'
+    workspace: 'tw_cli_e2e_test/showcase'
+    pipeline: 'nf-core-sarek'
   - name: 'nf-sentieon'
     workspace: 'tw_cli_e2e_test/showcase'
     pipeline: 'nf-sentieon'
