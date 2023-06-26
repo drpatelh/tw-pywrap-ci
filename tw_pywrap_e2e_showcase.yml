@@ -36,7 +36,7 @@ credentials:
   - type: 'github'
     name: 'github_credentials'
     workspace: 'tw_cli_e2e_test/showcase'
-    username: 'drpatelh'
+    username: 'adamrtalbot'
     password: '$TOWER_GITHUB_PASSWORD'
     overwrite: True
   - type: 'container-reg' 
