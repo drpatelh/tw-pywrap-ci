@@ -1,17 +1,17 @@
 name: Create all entities in Tower from end-to-end with tw_pywrap
 # This workflow can be triggered manually with GitHub actions workflow dispatch button.
 # It will automate the end-to-end creation all of the following entities in Nextflow Tower:
-  # Organization
-  # Teams
-  # Workspaces
-  # Participants
-  # Credentials
-  # Secrets
-  # Compute Environments
-  # Actions
-  # Datasets
-  # Pipelines
-  # Launch
+# Organization
+# Teams
+# Workspaces
+# Participants
+# Credentials
+# Secrets
+# Compute Environments
+# Actions
+# Datasets
+# Pipelines
+# Launch
 
 on:
   workflow_dispatch:
@@ -20,8 +20,6 @@ jobs:
     name:
     if: github.repository == 'drpatelh/tw-pywrap-ci'
     runs-on: ubuntu-latest
-    container:
-      image: drpatelh/tw_pywrap:latest
     env:
       TOWER_ACCESS_TOKEN: ${{ secrets.TOWER_ACCESS_TOKEN }}
       TOWER_GITHUB_PASSWORD: ${{ secrets.TOWER_GITHUB_PASSWORD }}
@@ -36,6 +34,34 @@ jobs:
     steps:
       - name: Check out source-code repository
         uses: actions/checkout@v3
+        with:
+          path: tw_pywrap_e2e_showcase
+
+      - name: Check out tw-pywrap repository
+        uses: actions/checkout@v3
+        with:
+          repository: ejseqera/tw-pywrap
+          ref: main # Latest version (for now)
+          path: tw-pywrap
+
+      - name: Setup conda
+        uses: conda-incubator/setup-miniconda@v2.2.0
+        with:
+          environment-file: tw-pywrap/environment.yml
+          activate-environment: tw_pywrap
+          miniforge-variant: Mambaforge
+          miniforge-version: latest
+          use-mamba: true
+
+      - name: Setup pip
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.10
+          cache: "pip"
+
+      - name: Install tw-pywrap
+        run: |
+          python -m pip install -e ./tw-pywrap
 
       - name: Create all entities on Tower from end-to-end
         run: |
@@ -43,6 +69,4 @@ jobs:
           echo $GOOGLE_KEY | base64 -d > $temp_file
           export GOOGLE_KEY=$temp_file
 
-          pip install git+https://github.com/ejseqera/tw-pywrap.git@main
-
-          tw-pywrap tw_pywrap_e2e_showcase.yml
+          tw-pywrap tw_pywrap_e2e_showcase/tw_pywrap_e2e_showcase.yml
