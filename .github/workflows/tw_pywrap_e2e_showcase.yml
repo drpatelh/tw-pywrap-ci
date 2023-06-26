@@ -1,27 +1,27 @@
 name: Create all entities in Tower from end-to-end with tw_pywrap
 # This workflow can be triggered manually with GitHub actions workflow dispatch button.
 # It will automate the end-to-end creation all of the following entities in Nextflow Tower:
-  # Organization
-  # Teams
-  # Workspaces
-  # Participants
-  # Credentials
-  # Secrets
-  # Compute Environments
-  # Actions
-  # Datasets
-  # Pipelines
-  # Launch
+# Organization
+# Teams
+# Workspaces
+# Participants
+# Credentials
+# Secrets
+# Compute Environments
+# Actions
+# Datasets
+# Pipelines
+# Launch
 
 on:
   workflow_dispatch:
 jobs:
   tw_pywrap_e2e_showcase:
-    name:
+    name: Create all entities in Tower from end-to-end with tw_pywrap
     if: github.repository == 'drpatelh/tw-pywrap-ci'
     runs-on: ubuntu-latest
     container:
-      image: drpatelh/tw_pywrap:latest
+      image: docker.io/adamtalbot/tw-pywrap:206095526fda69ff6f55869cbbc104ee54d02e24
     env:
       TOWER_ACCESS_TOKEN: ${{ secrets.TOWER_ACCESS_TOKEN }}
       TOWER_GITHUB_PASSWORD: ${{ secrets.TOWER_GITHUB_PASSWORD }}
@@ -42,7 +42,5 @@ jobs:
           temp_file=$(mktemp -q)
           echo $GOOGLE_KEY | base64 -d > $temp_file
           export GOOGLE_KEY=$temp_file
-
-          pip install git+https://github.com/ejseqera/tw-pywrap.git@main
 
           tw-pywrap tw_pywrap_e2e_showcase.yml
