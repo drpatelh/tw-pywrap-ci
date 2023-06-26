@@ -1,4 +1,5 @@
-name: Create all entities in Tower from end-to-end with tw_pywrap
+name: e2e-showcase
+run-name: Create all entities in Tower from end-to-end with tw_pywrap
 # This workflow can be triggered manually with GitHub actions workflow dispatch button.
 # It will automate the end-to-end creation all of the following entities in Nextflow Tower:
 # Organization
