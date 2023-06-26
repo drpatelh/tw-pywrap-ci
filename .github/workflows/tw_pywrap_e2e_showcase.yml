@@ -68,8 +68,9 @@ jobs:
       - name: Create all entities on Tower from end-to-end
         run: |
           mamba init
+          cd tw_pywrap_e2e_showcase
           temp_file=$(mktemp -q)
           echo $GOOGLE_KEY | base64 -d > $temp_file
           export GOOGLE_KEY=$temp_file
 
-          tw-pywrap tw_pywrap_e2e_showcase/tw_pywrap_e2e_showcase.yml
+          tw-pywrap tw_pywrap_e2e_showcase.yml
