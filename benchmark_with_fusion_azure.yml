@@ -1,0 +1,39 @@
+compute-envs:
+  - name: 'seqera_azure_virginia_with_fusion'
+    workspace: 'seqeralabs/benchmarks'
+    credentials: 'seqera_azure_credentials'
+    wait: 'AVAILABLE'
+    # labels: ''  ## TODO: resource labels will need to be changed dynamically
+    work-dir: 'az://fusionfs-ci'
+    location: 'eastus'
+    vm-type: 'Standard_D16s_v3'
+    vm-count: '16'
+    # no-auto-scale: False ## TODO: Check these are what we want compared to defaults
+    # preserve-resources: False ## TODO: Check these are what we want compared to defaults
+    # jobs-cleanup: 'ALWAYS' ## TODO: Check these are what we want compared to defaults
+    overwrite: True
+pipelines:
+  - name: 'rnaseq_test_full_with_fusion_azure'
+    workspace: 'seqeralabs/benchmarks'
+    description: 'RNA sequencing analysis pipeline using STAR, RSEM, HISAT2 or Salmon with gene/isoform counts and extensive quality control.'
+    labels: 'profile_test_full,with_fusion'
+    compute-env: 'seqera_azure_virginia_with_fusion'
+    work-dir: 'az://fusionfs-ci'
+    profile: 'test_full'
+    params:
+      input: 'https://api.tower.nf/workspaces/70508760960023/datasets/4STjG9bRvuWoytFWyRwvHf/v/1/n/nf-core-rnaseq-test-full-azure.csv' ## TODO: Add and use samplesheet in Seqeralabs Azure account
+      igenomes_base: 'az://igenomes'
+    revision: '3.12.0'
+    config: './pipelines/nextflow_with_fusion.config'
+    pre-run: './pipelines/pre_run.txt'
+    url: 'https://github.com/nf-core/rnaseq'
+    # overwrite: True # TODO: Only need to add this pipeline once
+launch:
+  - name: 'rnaseq_test_full_with_fusion_azure'
+    workspace: 'seqeralabs/benchmarks'
+    pipeline: 'rnaseq_test_full_with_fusion_azure'
+    compute-env: 'seqera_azure_virginia_with_fusion'
+    params:
+      outdir: 'az://fusionfs-ci/benchmarks/nf-core-rnaseq/profile_test_full/with_fusion/results' ## TODO: Change this output dynamically depending on labels
+    
+    
