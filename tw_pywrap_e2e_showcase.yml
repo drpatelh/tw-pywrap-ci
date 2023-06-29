@@ -186,10 +186,7 @@ pipelines:
     file-path: './pipelines/nf_sentieon_pipeline.json'
     overwrite: True
 launch:
-  - name: 'nf-core-rnaseq-launchpad'
-    workspace: 'tw_cli_e2e_test/showcase'
-    pipeline: 'nf-core-rnaseq'
-  - name: 'nf-core-rnaseq-remote'
+  - name: 'nf-core-rnaseq'
     workspace: 'tw_cli_e2e_test/showcase'
     pipeline: 'https://github.com/nf-core/rnaseq'
     compute-env: 'seqera_azure_virginia'
