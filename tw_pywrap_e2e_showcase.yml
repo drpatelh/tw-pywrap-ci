@@ -145,10 +145,7 @@ datasets:
     file-path: './datasets/sentieon_samples.csv'
     overwrite: True
 pipelines:
-  - name: 'nf-core-rnaseq-launchpad'
-    workspace: 'tw_pywrap_e2e/showcase'
-    pipeline: 'nf-core-rnaseq'
-  - name: 'nf-core-rnaseq-remote'
+  - name: 'nf-core-rnaseq'
     url: 'https://github.com/nf-core/rnaseq'
     workspace: 'tw_pywrap_e2e/showcase'
     description: 'RNA sequencing analysis pipeline using STAR, RSEM, HISAT2 or Salmon with gene/isoform counts and extensive quality control.'
