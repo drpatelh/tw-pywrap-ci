@@ -20,7 +20,7 @@ on:
 jobs:
   tw_pywrap_e2e_showcase:
     name:
-    if: github.repository == 'drpatelh/tw-pywrap-ci'
+    if: github.repository == 'drpatelh/tw_pywrap_showcase'
     runs-on: ubuntu-latest
     defaults:
       run:
